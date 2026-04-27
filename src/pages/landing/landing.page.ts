@@ -117,6 +117,17 @@ export class LandingPage {
     return this.page.getByRole('link', { name });
   }
 
+  /**
+   * Hero recommended filters row (icons + labels under the search strip): Free cancellation,
+   * Breakfast, Dogs/Cats allowed, Total price &lt;€500. Uses stable production `data-wwt-id`
+   * (`role="group"` — prefer this over `getByRole('button')`).
+   */
+  heroRecommendedFilterChip(label: string | RegExp): Locator {
+    return this.page
+      .locator('[data-wwt-id="main-search__recommended-filter--button"]')
+      .filter({ hasText: label });
+  }
+
   mainSearchCta(): Locator {
     return this.page.getByRole('link', { name: 'Search' });
   }
