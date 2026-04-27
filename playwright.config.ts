@@ -1,5 +1,6 @@
 /// <reference types="node" />
 import { defineConfig, devices } from '@playwright/test';
+import { DEFAULT_PLAYWRIGHT_BASE_URL } from './src/config/urls';
 
 /**
  * Read environment variables from file.
@@ -26,8 +27,9 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Base URL for `page.goto('/landings/en/')` — see `wiki/requirements.md` (Target URLs). */
-    baseURL: process.env.PLAYWRIGHT_BASE_URL ?? process.env.BASE_URL ?? 'https://winwin.travel',
+    /* Default: full EN landing — see `wiki/requirements.md` (Target URLs). */
+    baseURL:
+      process.env.PLAYWRIGHT_BASE_URL ?? process.env.BASE_URL ?? DEFAULT_PLAYWRIGHT_BASE_URL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
