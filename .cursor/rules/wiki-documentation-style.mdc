@@ -1,0 +1,12 @@
+---
+description: Conventions for wiki markdown in this repo
+globs: wiki/**/*.md
+alwaysApply: false
+---
+
+# Wiki style
+
+- Keep pages **short and scannable**: headings, tables, and bullet lists over long prose.
+- **Link** to `wiki/assignment.md`, `wiki/requirements.md`, and `wiki/task-context-for-automation.md` instead of pasting duplicate task specs.
+- For test cases, use the table format from `.cursor/skills/test-design-for-automation/SKILL.md` (id, preconditions, steps, data, expected, technique, risk).
+- Prefer **stable oracles**: roles, visible state, URL/query patterns — avoid brittle copy unless the requirement names exact strings.
