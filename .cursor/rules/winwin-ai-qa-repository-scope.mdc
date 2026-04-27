@@ -1,0 +1,22 @@
+---
+description: WinWin project scope — wiki, skills, agents, rules only unless automation is explicitly requested
+alwaysApply: true
+---
+
+# Repository scope (AI-QA reference)
+
+This project prioritizes **repeatable QA guidance** over shipping Playwright code in every change.
+
+## Default scope
+
+- Edit only under `wiki/`, `.cursor/skills/`, `.cursor/agents/`, and `.cursor/rules/` unless the user explicitly asks to change application or test code.
+- Treat `wiki/assignment.md`, `wiki/task_*.png`, and `wiki/task-context-for-automation.md` as **requirements and visual references** — do not duplicate their full text unnecessarily; link and summarize.
+
+## When automation is in scope
+
+- If the user explicitly requests Playwright/tests or `playwright.config.ts` changes, follow `.cursor/agents/developer.md` (branch policy, skills) and keep diffs small.
+
+## AI-in-QA stance
+
+- Use **skills** for structured test design and code-quality patterns.
+- Prefer **MCP browser** for exploration and evidence; **committed tests** are for regression only when the user wants them implemented.
