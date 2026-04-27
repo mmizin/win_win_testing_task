@@ -10,7 +10,7 @@ This project prioritizes **repeatable QA guidance** over shipping Playwright cod
 ## Default scope
 
 - Edit only under `wiki/`, `.cursor/skills/`, `.cursor/agents/`, and `.cursor/rules/` unless the user explicitly asks to change application or test code.
-- Treat `wiki/assignment.md`, `wiki/task_*.png`, and `wiki/task-context-for-automation.md` as **requirements and visual references** — do not duplicate their full text unnecessarily; link and summarize.
+- Treat `wiki/assignment.md` and `wiki/requirements.md` as **requirements references** — do not duplicate their full text unnecessarily; link and summarize.
 
 ## When automation is in scope
 

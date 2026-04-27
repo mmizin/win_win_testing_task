@@ -12,7 +12,7 @@ Convert product requirements into a compact, high-value test set that is easy to
 ## Inputs
 
 - `wiki/requirements.md`
-- Visual references (`wiki/task_1.png`, `wiki/task_2.png`, `wiki/task_3.png`)
+- `wiki/requirements.md` and live page for scope and URLs
 - Live behavior from target page
 
 ## Process

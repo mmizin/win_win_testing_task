@@ -15,8 +15,8 @@ Run the **Planner → Developer → Reviewer** pipeline for each chunk of work. 
 ## Inputs
 
 - User goal and scope (documentation-only vs includes automation).
-- `wiki/assignment.md`, `wiki/requirements.md`, `wiki/task-context-for-automation.md`, `wiki/agent-workflow.md`.
-- Target URL when relevant: `https://winwin.travel/app/landings/en` (assigner path; may 404). Working landing: `https://winwin.travel/landings/en/` per `wiki/task-context-for-automation.md`.
+- `wiki/assignment.md`, `wiki/requirements.md`, `wiki/agent-workflow.md`.
+- Target URL when relevant: `https://winwin.travel/app/landings/en` (assigner path; may 404). Working landing: `https://winwin.travel/landings/en/` per `wiki/requirements.md`.
 
 ## Pipeline (per chunk)
 

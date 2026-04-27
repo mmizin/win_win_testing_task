@@ -3,26 +3,30 @@
 ## Source Of Truth
 
 - Verbatim assigner text: [assignment.md](assignment.md)
-- Visual references (in this folder): `task_1.png`, `task_2.png`, `task_3.png`
-- Target page (assigner / wiki): `https://winwin.travel/app/landings/en` — see [task-context-for-automation.md](task-context-for-automation.md) for **live base URL** (that path currently returns 404; the working EN landing is under `/landings/en/`).
-- Consolidated context: [task-context-for-automation.md](task-context-for-automation.md)
 - Task 1 written cases: [header-test-cases.md](header-test-cases.md)
-- Task 2 written outline (for future automation): [task-2-scenario-outline.md](task-2-scenario-outline.md)
+- Layout and labels: validate on the live EN landing (see **Target URLs** below).
+
+## Target URLs (Playwright and manual QA)
+
+- **Assigner path:** `https://winwin.travel/app/landings/en` — often returns **404** in production; do not rely on it as the default automation entry unless you are testing that route.
+- **Working EN landing:** `https://winwin.travel/landings/en/` (also reachable from `https://winwin.travel/` via redirect). Use this path with `baseURL` `https://winwin.travel` and `page.goto('/landings/en/')`, or the full URL.
 
 ## Task 1: Header Test Cases
 
 - Create written test cases for the landing page header.
 - Cover visibility, labels, and interaction for:
   - Logo
-  - `Get €2000 off` CTA (assigner wording; on current production the header may show e.g. **Get Discount** — treat as the same class of primary orange CTA and document label in [header-test-cases.md](header-test-cases.md) / [task_1.png](task_1.png))
+  - Primary orange header CTA (**Get Discount** on current production; campaign copy may differ — oracle and steps in [header-test-cases.md](header-test-cases.md))
   - Utility icons
   - `Register` and `Sign In`
 
 ## Task 2: UI Automation Scenarios
 
-1. Max adults selection in Guests selector.
-2. Pets filter options selection and selected-state validation.
-3. Verify filters change request URL and/or outgoing request payload/params.
+Ids below match `src/constants/task2-scenarios.ts` for traceability.
+
+1. **A-01** — Max adults selection in Guests selector (behavior at ceiling).
+2. **A-02** — Pets filter options selection and selected-state validation (weight bands + Other).
+3. **A-03** — Verify filters change request URL and/or outgoing request payload/params.
 
 ## Technical Constraints
 

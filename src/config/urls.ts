@@ -1,5 +1,5 @@
 /**
- * Default automation entry per `wiki/task-context-for-automation.md` (EN landing, working route).
+ * Default automation entry: EN landing working route (`/landings/en/`); see `wiki/requirements.md`.
  * Override with `PLAYWRIGHT_BASE_URL` or `BASE_URL` in `playwright.config.ts`.
  */
 export const DEFAULT_LANDING_EN_PATH = '/landings/en/';

@@ -6,9 +6,9 @@ Review and validate deliverables for the active chunk: **documentation and Curso
 
 ## Review Scope (documentation-first)
 
-- Wiki tables trace to `wiki/assignment.md` / screenshots; techniques and risks present where promised.
+- Wiki tables trace to `wiki/assignment.md`; techniques and risks present where promised.
 - Skills and rules stay concise, actionable, and free of contradictions.
-- Cross-links between `wiki/requirements.md`, `task-context-for-automation.md`, and case files are correct.
+- Cross-links between `wiki/requirements.md` and case files are correct.
 
 ## Review Scope (when automation exists)
 
