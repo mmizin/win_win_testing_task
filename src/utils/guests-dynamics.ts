@@ -2,7 +2,7 @@ import type { Locator } from '@playwright/test';
 
 /**
  * Clicks the Adults "+" control until the value stops increasing; returns the ceiling
- * (Task 2 A-01 / boundary on max adults). Requires a stable `valueLocator` and `increment` button.
+ * Requires a stable `valueLocator` and `increment` button.
  */
 export async function readAdultsMaxByIncrement(
   valueLocator: Locator,
@@ -16,6 +16,9 @@ export async function readAdultsMaxByIncrement(
     const n = parseInt(raw, 10);
     if (!Number.isNaN(n)) last = n;
     const before = n;
+    if (await incrementButton.isDisabled().catch(() => true)) {
+      break;
+    }
     await incrementButton.click();
     const after = parseInt(await valueLocator.inputValue(), 10);
     if (after === before) break;
