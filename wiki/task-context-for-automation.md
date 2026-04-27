@@ -12,7 +12,7 @@
 | [wiki/requirements.md](requirements.md) | Condensed requirements aligned with `assignment.md` |
 | [wiki/header-test-cases.md](header-test-cases.md) | Task 1 written header cases |
 | [wiki/task-2-scenario-outline.md](task-2-scenario-outline.md) | Task 2 automation targets (written only) |
-| `task_1.png` | Header reference (file in `wiki/`) |
+| `task_1.png` | Header + top-of-landing reference (file in `wiki/`; refreshed from live site, see below) |
 | `task_2.png` | Hero / search / filters / advanced — reference (file in `wiki/`) |
 | `task_3.png` | Guests modal reference (file in `wiki/`) |
 
@@ -22,7 +22,9 @@
 
 ## Target
 
-- **Landing (EN):** `https://winwin.travel/app/landings/en`
+- **Assigner / wiki URL:** `https://winwin.travel/app/landings/en` — currently returns **404** (broken route in this environment).
+- **Working EN landing (use for manual QA and Playwright):** `https://winwin.travel/landings/en/` (also reached from `https://winwin.travel/` via redirect).
+- Use the working URL for stable UI unless you are explicitly testing the 404 page or until `/app/landings/en` is fixed upstream.
 
 ---
 
@@ -41,11 +43,11 @@ The assigner’s full wording is in [assignment.md](assignment.md) (no duplicate
 
 Screenshots live in `wiki/`: `task_1.png`, `task_2.png`, `task_3.png`.
 
-### `task_1.png` — Header
+### `task_1.png` — Header and hero (desktop capture)
 
-- White bar between a thin olive strip (top) and a blue-grey bar (bottom).
-- **Left:** Logo (orange icon + **winwin.travel** — “winwin” bold, “.travel” regular).
-- **Right (typical order):** Orange CTA **Get €2000 off**; outline icons (link, bell, thumb-up, profile); **Register** and **Sign In** (white, light border, dark text).
+- **Source:** Playwright viewport screenshot (e.g. 1440×900) from the **working** EN landing above; replace by re-capturing when the UI drifts.
+- **Header (white bar):** **Left:** Logo (orange icon + **winwin.travel**). **Right:** Orange CTA labeled **Get Discount** on current production (assigner copy in [requirements.md](requirements.md) still says **Get €2000 off** — same CTA *class*, possible label/campaign drift); outline icons (link, bell, thumb-up, profile); **Register** and **Sign In** (outlined).
+- **Below header:** Teal hero / **banner** with imagery (e.g. hot air balloons), headline **Personalized stays are waiting** / **Try our platform**, **Ask AI** control, and the white **search** strip (location, dates, guests, quick filter chips, **Search**).
 
 ### `task_2.png` — Hero / search / filters (annotated for QA focus)
 
@@ -78,4 +80,4 @@ Screenshots live in `wiki/`: `task_1.png`, `task_2.png`, `task_3.png`.
 
 ---
 
-*Last aligned with [assignment.md](assignment.md) and task images as a combined reference for the WinWin landing QA scope.*
+*Last updated: 2026-04 — aligned with [assignment.md](assignment.md), [requirements.md](requirements.md), refreshed `task_1.png`, and live behavior on `winwin.travel/landings/en/`.*
