@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "typecheck": "tsc --noEmit -p ."
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mmizin/win_win_testing_task.git"
