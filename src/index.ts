@@ -12,5 +12,12 @@ export { readAdultsMaxByIncrement } from './utils/guests-dynamics';
 export { withNoServerErrorsOnApiStyleTraffic } from './utils/network-assertions';
 export { logTestInfo } from './utils/test-log';
 export { diffSearchParams, parseSearchToRecord } from './utils/search-params-compare';
+export {
+  DOG_WEIGHT_UI_OPTIONS,
+  PET_SPECIES_UI,
+  apiPetTypeFromSpeciesUi,
+  apiWeightFromUiLabel,
+} from './models/guests/pet-filter-options';
+export { parseGuestPetFromSearchHref } from './utils/guest-pet-search-href';
 export * from './models/guests/guest-selection.types';
 export { expect, test } from './fixtures';

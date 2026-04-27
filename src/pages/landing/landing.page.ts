@@ -120,4 +120,60 @@ export class LandingPage {
   mainSearchCta(): Locator {
     return this.page.getByRole('link', { name: 'Search' });
   }
+
+  /** Radix guests dropdown while open (hero strip). */
+  openGuestsMenu(): Locator {
+    return this.page.locator('[data-radix-menu-content][data-state="open"]');
+  }
+
+  petsCounterRoot(): Locator {
+    return this.openGuestsMenu().locator('[data-wwt-id="guests-select__pets-number--input"]');
+  }
+
+  petsSpinbutton(): Locator {
+    return this.petsCounterRoot().getByRole('spinbutton');
+  }
+
+  petsIncrement(): Locator {
+    return this.petsCounterRoot().locator('[data-wwt-id="number-counter__plus--button"]');
+  }
+
+  /**
+   * Species combobox (Dog / Cat / Other) — requires pets count ≥ 1.
+   */
+  petSpeciesCombobox(): Locator {
+    return this.openGuestsMenu().locator('[role="combobox"]').nth(0);
+  }
+
+  /** Weight band combobox — requires pets count ≥ 1. */
+  petWeightCombobox(): Locator {
+    return this.openGuestsMenu().locator('[role="combobox"]').nth(1);
+  }
+
+  async ensurePetsCountAtLeast(min: number): Promise<void> {
+    const input = this.petsSpinbutton();
+    for (;;) {
+      const n = Number.parseInt(await input.inputValue(), 10);
+      if (Number.isFinite(n) && n >= min) {
+        return;
+      }
+      await this.petsIncrement().click();
+    }
+  }
+
+  async selectPetSpecies(species: 'Dog' | 'Cat' | 'Other'): Promise<void> {
+    await this.petSpeciesCombobox().click();
+    await this.page.getByRole('option', { name: species, exact: true }).click();
+  }
+
+  async selectPetWeight(optionLabel: string): Promise<void> {
+    await this.petWeightCombobox().click();
+    await this.page.getByRole('option', { name: optionLabel, exact: true }).click();
+  }
+
+  /** Close the guests menu so hero CTAs (e.g. Search `href`) reflect the latest guest state. */
+  async dismissGuestsMenu(): Promise<void> {
+    await this.page.keyboard.press('Escape');
+    await this.openGuestsMenu().waitFor({ state: 'hidden' }).catch(() => undefined);
+  }
 }
