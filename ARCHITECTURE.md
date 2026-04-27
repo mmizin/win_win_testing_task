@@ -18,8 +18,8 @@ Repository for **WinWin.travel QA work**: manual test cases, automation scenario
 
 | Path | Role |
 |------|------|
-| `src/` | Shared test support: models (app-shaped test types), `src/constants` (assignment outline ids, not product domain), builders, factories, page objects, utilities, and Playwright `test` / `expect` re-exports via `src/fixtures` (path alias `@/*` in `tsconfig.json`) |
-| `tests/` | Playwright spec files (entry: `playwright.config.ts` → `testDir: './tests'`) |
+| `src/` | Shared test support: models (app-shaped test types), builders, factories, page objects, utilities, and Playwright `test` / `expect` re-exports via `src/fixtures` (path alias `@/*` in `tsconfig.json`) |
+| `tests/` | Playwright spec files (entry: `playwright.config.ts` → `testDir: './tests'`). Grouped by area (e.g. `tests/landing/`) when helpful. |
 | `playwright.config.ts` | Browser projects, retries, reporters, shared `use` options |
 | `wiki/assignment.md` | Verbatim assigner text (Task 1 + 2 and technical requirements) |
 | `wiki/` | Requirements, test-case docs, references |
@@ -33,12 +33,12 @@ Repository for **WinWin.travel QA work**: manual test cases, automation scenario
 **Intended patterns** (when implementing WinWin scenarios — align with `.cursor/skills/test-automation-code-quality/SKILL.md`):
 
 - **`src/models` / builders / factories** — test data shaped like the app (e.g. guest counts, filter presets, pet weight band ids, URL diff helpers)
-- **`src/constants`** — non-domain automation metadata (e.g. `task2-scenarios.ts` → `wiki/requirements.md` Task 2 ids)
 - **Page objects** (or composable page fragments) for stable selectors and reuse; entry point `LandingPage` in `src/pages/landing/landing.page.ts`
+- **`src/utils` helpers** — e.g. `withNoServerErrorsOnApiStyleTraffic` (network assertions), `logTestInfo` (stdout logging in tests)
 - **Fixtures** — `import { test, expect } from '../src/fixtures'` (or `from '@/fixtures'` if your runner resolves `tsconfig` paths) for `landing` and future fixtures
 - **Base URL** — `playwright.config.ts` sets `use.baseURL` to `https://winwin.travel` by default; use `page.goto('/landings/en/')` in specs (overridable with `PLAYWRIGHT_BASE_URL` / `BASE_URL`)
 - **UI assertions** plus **network or API checks** where requirements call for URL/request validation
-- **Small, focused specs** mapped to named scenarios from the wiki (e.g. Task 2 ids in `requirements.md`)
+- **Small, focused specs**; traceability to `wiki/requirements.md` via file names and comments where useful
 
 Add subfolders under `tests/` only when it improves clarity (e.g. `tests/header/`, `tests/search/`) and document the convention here.
 

@@ -22,9 +22,7 @@
 
 ## Task 2: UI Automation Scenarios
 
-Ids below match `src/constants/task2-scenarios.ts` for traceability.
-
-1. **A-01** — Max adults selection in Guests selector (behavior at ceiling).
+1. **A-01** — Max adults selection in Guests selector (behavior at ceiling). See `tests/landing/guests-max-adults.spec.ts`.
 2. **A-02** — Pets filter options selection and selected-state validation (weight bands + Other).
 3. **A-03** — Verify filters change request URL and/or outgoing request payload/params.
 
