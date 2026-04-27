@@ -5,8 +5,12 @@
 
 export { GuestSelectionBuilder } from './builders/guest-selection.builder';
 export { advancedFilterCheckboxes } from './models/filters/advanced-filter-labels';
-export { GuestSelectionFactory } from './factories/guest-selection.factory';
-export * from './factories/advanced-filter-preset.factory';
+export {
+  breakfastOnlyPreset,
+  petWeightMatrixScenario,
+  type PetWeightScenario,
+} from './test-data/advanced-filter-presets';
+export { guestSelectionDefault, guestSelectionSingleAdult } from './test-data/guest-selection.presets';
 export * from './models/pets/pet-weight-band';
 export { TASK2_SCENARIOS, type Task2ScenarioKey } from './constants/task2-scenarios';
 export { DEFAULT_LANDING_EN_PATH, defaultLandingEnUrl } from './config/urls';

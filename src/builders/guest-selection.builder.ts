@@ -1,10 +1,7 @@
 import type { GuestSelection } from '../models/guests/guest-selection.types';
+import { guestSelectionDefault } from '../test-data/guest-selection.presets';
 
-const DEFAULT: GuestSelection = {
-  adults: 2,
-  children: 0,
-  pets: 0,
-};
+const DEFAULT: GuestSelection = { ...guestSelectionDefault };
 
 /**
  * Mutable builder for `GuestSelection` (mirrors the CryptoSandbox `UserBuilder` style).
