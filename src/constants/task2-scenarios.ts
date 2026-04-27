@@ -1,5 +1,5 @@
 /**
- * Map written Task 2 outline rows (`wiki/task-2-scenario-outline.md`) to automation types.
+ * Traceability to the written outline (`wiki/task-2-scenario-outline.md`), not app domain data.
  */
 export const TASK2_SCENARIOS = {
   a01: {
