@@ -40,7 +40,7 @@ Add subfolders under `tests/` only when it improves clarity (e.g. `tests/header/
 
 ## Configuration and environment
 
-- **Base URL:** Set in `playwright.config.ts` under `use.baseURL` when the suite should use relative navigation (`page.goto('/')`). Uncomment and set when the target environment is fixed.
+- **Base URL:** Set in `playwright.config.ts` under `use.baseURL` when the suite should use relative navigation (`page.goto('/')`). Uncomment and set when the target environment is fixed. **Which host/path to use** (assigner URL vs working landing, 404 caveat) is documented in `wiki/task-context-for-automation.md`.
 - **Secrets / env files:** Optional `.env` loading is stubbed in `playwright.config.ts` (commented `dotenv` imports). Document variable names in the section below when introduced.
 - **Local server:** `webServer` block is commented; enable if tests should start an app automatically.
 
@@ -62,7 +62,7 @@ Record meaningful choices so future changes stay consistent.
 
 | Date | Decision | Rationale |
 |------|----------|-----------|
-| *(add rows)* | | |
+| 2026-04 | Live EN landing base URL and 404 on `/app/landings/en` are documented in `wiki/task-context-for-automation.md` (and `task_1.png` shows current header/hero). | Avoids ad-hoc URLs in tests and matches production routing. |
 
 ## CI and release (fill in when applicable)
 

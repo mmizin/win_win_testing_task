@@ -8,5 +8,5 @@ alwaysApply: false
 
 - Keep pages **short and scannable**: headings, tables, and bullet lists over long prose.
 - **Link** to `wiki/assignment.md`, `wiki/requirements.md`, and `wiki/task-context-for-automation.md` instead of pasting duplicate task specs.
-- For test cases, use the table format from `.cursor/skills/test-design-for-automation/SKILL.md` (id, preconditions, steps, data, expected, technique, risk).
+- For test cases, use the same **fields** as `.cursor/skills/test-design-for-automation/SKILL.md` (id, preconditions, steps, data, expected, technique, risk): either the skill’s **markdown table** or **sectioned cases** (e.g. `### H-xx — title` with bullets per field) if tables are not desired.
 - Prefer **stable oracles**: roles, visible state, URL/query patterns — avoid brittle copy unless the requirement names exact strings.

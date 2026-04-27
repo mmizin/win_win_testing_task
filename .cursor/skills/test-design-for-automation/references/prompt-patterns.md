@@ -17,3 +17,7 @@ Use these as **starters**; always require technique names and risk on each case.
 ## Prune a bloated list
 
 > Here are draft cases: `[paste]`. Merge duplicates, drop low-value overlap, and return the minimal set that still covers stated risks.
+
+## Desktop and mobile
+
+> For `[component]`, after you see where controls live at wide vs narrow viewport, output **separate** case ids for desktop and mobile (no `if/else` in one case): wide viewport with controls in the main shell; narrow viewport with menu/drawer steps. Put viewport in preconditions. Table columns: id, scenario, preconditions, steps, data, expected, technique, risk.

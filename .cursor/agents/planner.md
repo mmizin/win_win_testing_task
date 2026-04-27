@@ -9,7 +9,7 @@ Transform `wiki/requirements.md` into an implementation-ready plan with clear ch
 - `wiki/requirements.md`
 - `wiki/task-context-for-automation.md`
 - `wiki/ai-in-qa-workflow.md`
-- Target URL: `https://winwin.travel/app/landings/en`
+- Target URL: `https://winwin.travel/app/landings/en` (assigner); for working UI use `https://winwin.travel/landings/en/` — see `wiki/task-context-for-automation.md`.
 
 ## Required Output
 
