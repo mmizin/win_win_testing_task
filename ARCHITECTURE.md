@@ -18,7 +18,7 @@ Repository for **WinWin.travel QA work**: manual test cases, automation scenario
 
 | Path | Role |
 |------|------|
-| `src/` | Shared test support: models, `src/constants`, `src/test-data` (preset objects for scenarios — not “factories”), builders, page objects, utilities, and Playwright `test` / `expect` re-exports via `src/fixtures` (path alias `@/*` in `tsconfig.json`) |
+| `src/` | Shared test support: models (app-shaped test types), `src/constants` (assignment outline ids, not product domain), builders, factories, page objects, utilities, and Playwright `test` / `expect` re-exports via `src/fixtures` (path alias `@/*` in `tsconfig.json`) |
 | `tests/` | Playwright spec files (entry: `playwright.config.ts` → `testDir: './tests'`) |
 | `playwright.config.ts` | Browser projects, retries, reporters, shared `use` options |
 | `wiki/assignment.md` | Verbatim assigner text (Task 1 + 2 and technical requirements) |
@@ -32,8 +32,7 @@ Repository for **WinWin.travel QA work**: manual test cases, automation scenario
 
 **Intended patterns** (when implementing WinWin scenarios — align with `.cursor/skills/test-automation-code-quality/SKILL.md`):
 
-- **`src/models` / builders** — types and mutable builders (e.g. `GuestSelection`) when a spec needs to vary fields
-- **`src/test-data`** — static presets (e.g. default guest counts, Task 2 filter bundles) — plain exports, no factory classes
+- **`src/models` / builders / factories** — test data shaped like the app (e.g. guest counts, filter presets, pet weight band ids, URL diff helpers)
 - **`src/constants`** — non-domain automation metadata (e.g. `task2-scenarios.ts` → wiki `task-2-scenario-outline.md` ids)
 - **Page objects** (or composable page fragments) for stable selectors and reuse; entry point `LandingPage` in `src/pages/landing/landing.page.ts`
 - **Fixtures** — `import { test, expect } from '../src/fixtures'` (or `from '@/fixtures'` if your runner resolves `tsconfig` paths) for `landing` and future fixtures
