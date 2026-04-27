@@ -1,12 +1,12 @@
 # Task 1 — Header test cases (written)
 
-**Source:** [assignment.md](assignment.md), [requirements.md](requirements.md), [task-context-for-automation.md](task-context-for-automation.md), visual [task_1.png](task_1.png).  
-**Target (assignee / wiki):** `https://winwin.travel/app/landings/en` (404 today — use the working base URL in [task-context-for-automation.md](task-context-for-automation.md) for runs).  
+**Source:** [assignment.md](assignment.md), [requirements.md](requirements.md) (target URLs and scope).
+**Target (assignee / wiki):** `https://winwin.travel/app/landings/en` (404 today — use the working base URL in [requirements.md](requirements.md) for runs).
 **Test design follow-up:** [test-design-for-automation](../.cursor/skills/test-design-for-automation/SKILL.md). Each case lists the **full technique name** below.
 
 **Techniques used in this doc:** equivalence partitioning; boundary value analysis; state transition; decision table; error guessing / exploratory.
 
-**Platforms:** **Desktop** cases use a wide viewport (header controls on the top bar, per [task_1.png](task_1.png)). **Mobile** cases use a narrow viewport and the **Open mobile menu** path — they are separate cases, not branches inside a desktop test.
+**Platforms:** **Desktop** cases use a wide viewport (header controls on the top bar, per live EN landing). **Mobile** cases use a narrow viewport and the **Open mobile menu** path — they are separate cases, not branches inside a desktop test.
 
 ## URL and baselines (live, 2026-04)
 
@@ -14,7 +14,7 @@
 - **Working EN landing** — `https://winwin.travel/landings/en/`.
 - **Baseline for execution:** use the working URL unless you are explicitly testing the 404 route.
 
-**Header (desktop, [task_1.png](task_1.png)):** logo; **Get Discount**; utility icons; **Register** and **Sign In** on the header row. **Mobile** layouts move some actions into the slide-out **Menu**.
+**Header (desktop, live EN landing):** logo; **Get Discount**; utility icons; **Register** and **Sign In** on the header row. **Mobile** layouts move some actions into the slide-out **Menu**.
 
 ---
 
@@ -34,7 +34,7 @@ Use a fixed width at or above the product desktop breakpoint (e.g. **≥ 1280px*
 ### H-02 — Primary header CTA (**Get Discount**)
 
 - **Preconditions:** Not logged in; campaign available; desktop width.
-- **Steps:** Find the main **orange** CTA in the header; assert visible/accessible name is **Get Discount** (per [task_1.png](task_1.png)); click; record final URL or view.
+- **Steps:** Find the main **orange** CTA in the header; assert visible/accessible name is **Get Discount** (per [requirements.md](requirements.md) / live site); click; record final URL or view.
 - **Data:** *None.*  
 - **Expected:** Label is **Get Discount**; control enabled; no unhandled client error; navigation or flow starts (modal/route); store URL/view as regression baseline if copy changes in a later release.
 - **Technique:** Equivalence partitioning  
@@ -43,7 +43,7 @@ Use a fixed width at or above the product desktop breakpoint (e.g. **≥ 1280px*
 ### H-03 — Utility icons (link, notifications, social/like, account shell)
 
 - **Preconditions:** EN landing; desktop width; same view as H-01–H-02.
-- **Steps:** Locate the icon row in the header (per [task_1.png](task_1.png): link, bell, “thumb”/feedback, user/profile). Hover or focus if tooltips/labels are used; click each *only* if the product may navigate (or stub no-op) — at minimum verify presence and any name where required.
+- **Steps:** Locate the icon row in the header (link, bell, “thumb”/feedback, user/profile). Hover or focus if tooltips/labels are used; click each *only* if the product may navigate (or stub no-op) — at minimum verify presence and any name where required.
 - **Data:** *None.*  
 - **Expected:** All expected utility affordances are visible; each has a consistent role/label; no crash on interaction per product design (notifications may be empty/disabled in some sessions).
 - **Technique:** Equivalence partitioning  
@@ -156,5 +156,5 @@ Use a fixed **narrow** width (e.g. **≤ 390px** or the product’s documented m
 - **Locators:** Prefer `getByRole` / accessible names. Externalize the CTA string in config if copy changes.
 - **Desktop vs mobile:** on a **wide** project run **H-01–H-07**; on a **narrow** project run **H-08–H-12**; run **H-13** on either or both as needed. Use two Playwright **projects** (different `viewport` / `isMobile`) if you automate.
 - **Not only in the header row:** e.g. **Transition to the comparison page**, **chat**, **Ask AI** may sit on other rows; cover when the task scope includes the whole top shell, not the narrow “header bar only” slice.
-- **404 assignee URL:** do not use as default `baseURL` until the route is fixed; see [task-context-for-automation.md](task-context-for-automation.md).
+- **404 assignee URL:** do not use as default `baseURL` until the route is fixed; see [requirements.md](requirements.md).
 - **Locale:** IDs assume **EN**; mirror for other languages with translated copy.

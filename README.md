@@ -12,7 +12,7 @@ The first deliverable is a **full set of written cases** for the public landing 
 
 **Read the spec here:** [Header test cases (Task 1 — wiki)](wiki/header-test-cases.md)
 
-That document ties back to the assignment, requirements, the Task 1 visual, and the correct base URL for runs (the assignee path can 404—details are in [Task context for automation](wiki/task-context-for-automation.md)).
+That document ties back to the assignment, requirements, and the correct base URL for runs (the assignee path can 404—details are in [Requirements](wiki/requirements.md)).
 
 **Also useful:** [Assignment (verbatim)](wiki/assignment.md) · [Requirements](wiki/requirements.md)
 
@@ -46,4 +46,4 @@ You need [Node.js](https://nodejs.org/) (LTS is fine). From the repo root:
 - One browser only: `npx playwright test --project=chromium`  
 - Open the last HTML report: `npx playwright show-report`  
 
-Specs are under `tests/`; shared settings are in `playwright.config.ts`. When you want every test to use the same host, set `use.baseURL` there and align it with the working landing URL in [task-context-for-automation](wiki/task-context-for-automation.md).
+Specs are under `tests/`; shared settings are in `playwright.config.ts`. When you want every test to use the same host, set `use.baseURL` there and align it with the working landing URL in [requirements](wiki/requirements.md).

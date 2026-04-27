@@ -8,7 +8,6 @@ Execute approved chunks: **wiki, skills, rules, and agent briefs** by default; a
 
 - Plan output from planner
 - `wiki/requirements.md`
-- `wiki/task-context-for-automation.md`
 - Skill: `.cursor/skills/test-design-for-automation/SKILL.md`
 - Skill: `.cursor/skills/test-automation-code-quality/SKILL.md`
 

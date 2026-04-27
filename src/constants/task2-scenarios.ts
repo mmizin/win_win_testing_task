@@ -1,5 +1,5 @@
 /**
- * Traceability to the written outline (`wiki/task-2-scenario-outline.md`), not app domain data.
+ * Traceability to `wiki/requirements.md` § Task 2 (A-01…A-03), not app domain data.
  */
 export const TASK2_SCENARIOS = {
   a01: {

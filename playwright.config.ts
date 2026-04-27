@@ -26,7 +26,7 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Base URL for `page.goto('/landings/en/')` — see `wiki/task-context-for-automation.md`. */
+    /* Base URL for `page.goto('/landings/en/')` — see `wiki/requirements.md` (Target URLs). */
     baseURL: process.env.PLAYWRIGHT_BASE_URL ?? process.env.BASE_URL ?? 'https://winwin.travel',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
