@@ -1,5 +1,5 @@
 /**
- * Helpers for A-03 (URL / request differs from baseline when filters change).
+ * Helpers to compare URL / request to baseline when filters change.
  */
 export function parseSearchToRecord(search: string): Record<string, string> {
   const u = new URLSearchParams(search.startsWith('?') ? search.slice(1) : search);
