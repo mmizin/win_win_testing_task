@@ -1,17 +1,16 @@
 import type { Locator, Page, Response } from '@playwright/test';
-import { DEFAULT_LANDING_EN_PATH } from '../../config/urls';
-import { readAdultsMaxByIncrement } from '../../utils/guests-dynamics';
+import { DEFAULT_HOME_EN_PATH } from '../../config/urls';
 
 /**
- * EN landing hero + search strip + quick links. Locators favor roles/labels from the live site
+ * EN home page hero + search strip + quick links. Locators favor roles/labels from the live site
  * (`https://winwin.travel/landings/en/`).
  */
-export class LandingPage {
+export class HomePage {
   constructor(readonly page: Page) {}
 
   /** Uses `playwright.config` `baseURL` + default EN path. */
-  async gotoEnLanding(options?: Parameters<Page['goto']>[1]): Promise<Response | null> {
-    return this.page.goto(DEFAULT_LANDING_EN_PATH, { waitUntil: 'domcontentloaded', ...options });
+  async gotoHomePage(options?: Parameters<Page['goto']>[1]): Promise<Response | null> {
+    return this.page.goto(DEFAULT_HOME_EN_PATH, { waitUntil: 'domcontentloaded', ...options });
   }
 
   /** Primary CTA in the header (copy may vary with campaigns). */
@@ -187,4 +186,30 @@ export class LandingPage {
     await this.page.keyboard.press('Escape');
     await this.openGuestsMenu().waitFor({ state: 'hidden' }).catch(() => undefined);
   }
+}
+
+/**
+ * Clicks the Adults "+" control until the value stops increasing; returns the ceiling.
+ * Requires a stable `valueLocator` and `increment` button.
+ */
+async function readAdultsMaxByIncrement(
+  valueLocator: Locator,
+  incrementButton: Locator,
+  options?: { maxClicks?: number }
+): Promise<number> {
+  const cap = options?.maxClicks ?? 100;
+  let last = 0;
+  for (let i = 0; i < cap; i++) {
+    const raw = await valueLocator.inputValue();
+    const n = parseInt(raw, 10);
+    if (!Number.isNaN(n)) last = n;
+    const before = n;
+    if (await incrementButton.isDisabled().catch(() => true)) {
+      break;
+    }
+    await incrementButton.click();
+    const after = parseInt(await valueLocator.inputValue(), 10);
+    if (after === before) break;
+  }
+  return last;
 }

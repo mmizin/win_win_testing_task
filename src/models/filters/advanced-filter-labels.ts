@@ -1,5 +1,5 @@
 /**
- * Checkboxes seen in the advanced filter panel on production EN landing (Apr 2026 snapshot).
+ * Checkboxes seen in the advanced filter panel on production EN home page (Apr 2026 snapshot).
  * Use with `getByRole('checkbox', { name: '…' })` when labels stay stable; adjust if product renames.
  */
 export const advancedFilterCheckboxes = {

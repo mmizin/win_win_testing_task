@@ -27,7 +27,7 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Default: full EN landing — see `wiki/requirements.md` (Target URLs). */
+    /* Default: full EN home page — see `wiki/requirements.md` (Target URLs). */
     baseURL:
       process.env.PLAYWRIGHT_BASE_URL ?? process.env.BASE_URL ?? DEFAULT_PLAYWRIGHT_BASE_URL,
 

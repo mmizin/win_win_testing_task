@@ -46,4 +46,4 @@ You need [Node.js](https://nodejs.org/) (LTS is fine). From the repo root:
 - One browser only: `npx playwright test --project=chromium`  
 - Open the last HTML report: `npx playwright show-report`  
 
-Specs are under `tests/`; shared settings are in `playwright.config.ts`. When you want every test to use the same host, set `use.baseURL` there and align it with the working landing URL in [requirements](wiki/requirements.md).
+Specs are under `tests/`; shared settings are in `playwright.config.ts`. When you want every test to use the same host, set `use.baseURL` there and align it with the working EN home page URL in [requirements](wiki/requirements.md).

@@ -1,6 +1,6 @@
 /**
  * Observed GET query values for `/api/v1/statistics/offers/count` after applying the advanced-filter
- * checkbox labeled like `advancedFilterCheckboxes.meals.breakfast` (EN production landing).
+ * checkbox labeled like `advancedFilterCheckboxes.meals.breakfast` (EN production home page).
  * Update if the filter taxonomy changes.
  */
 export const statisticsOffersCountBreakfastQuery = {
