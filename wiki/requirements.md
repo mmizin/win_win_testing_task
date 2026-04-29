@@ -22,7 +22,7 @@
 
 ## Task 2: UI Automation Scenarios
 
-1. Max adults selection in Guests selector (behavior at ceiling). See `tests/landing/guests-max-adults.spec.ts`.
+1. Max adults selection in Guests selector (behavior at ceiling). See `tests/home/guests-max-adults.spec.ts`.
 2. Pets filter options selection and selected-state validation (weight bands + Other).
 3. Verify filters change request URL and/or outgoing request payload/params.
 

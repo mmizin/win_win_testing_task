@@ -4,6 +4,11 @@ import type { Page, Response } from '@playwright/test';
 const WINWIN = /winwin\.travel/i;
 
 /**
+ * Network-layer helpers for specs. Add related assertions here as the suite grows
+ * (same-origin policy, response shape, etc.).
+ */
+
+/**
  * While `action` runs, assert no **5xx** on same-origin `fetch` / `xhr` responses
  * (typical API-style traffic from the app shell). Returns the result of `action`.
  */

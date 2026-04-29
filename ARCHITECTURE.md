@@ -19,7 +19,7 @@ Repository for **WinWin.travel QA work**: manual test cases, automation scenario
 | Path | Role |
 |------|------|
 | `src/` | Shared test support: models (app-shaped test types), builders, factories, page objects, utilities, and Playwright `test` / `expect` re-exports via `src/fixtures` (path alias `@/*` in `tsconfig.json`) |
-| `tests/` | Playwright spec files (entry: `playwright.config.ts` → `testDir: './tests'`). Grouped by area (e.g. `tests/landing/`) when helpful. |
+| `tests/` | Playwright spec files (entry: `playwright.config.ts` → `testDir: './tests'`). Grouped by area (e.g. `tests/home/`) when helpful. |
 | `playwright.config.ts` | Browser projects, retries, reporters, shared `use` options |
 | `wiki/assignment.md` | Verbatim assigner text (Task 1 + 2 and technical requirements) |
 | `wiki/` | Requirements, test-case docs, references |
@@ -33,9 +33,9 @@ Repository for **WinWin.travel QA work**: manual test cases, automation scenario
 **Intended patterns** (when implementing WinWin scenarios — align with `.cursor/skills/test-automation-code-quality/SKILL.md`):
 
 - **`src/models` / builders / factories** — test data shaped like the app (e.g. guest counts, filter presets, pet weight band ids, URL diff helpers)
-- **Page objects** (or composable page fragments) for stable selectors and reuse; entry point `LandingPage` in `src/pages/landing/landing.page.ts`
-- **`src/utils` helpers** — e.g. `withNoServerErrorsOnApiStyleTraffic` (network assertions), `logTestInfo` (stdout logging in tests)
-- **Fixtures** — `import { test, expect } from '../src/fixtures'` (or `from '@/fixtures'` if your runner resolves `tsconfig` paths) for `landing` and future fixtures
+- **Page objects** (or composable page fragments) for stable selectors and reuse; entry point `HomePage` in `src/pages/home/home.page.ts`
+- **`src/utils` helpers** — keep small but extensible (e.g. `test-log.ts` for stdout logging, `network-assertions.ts` for reusable network wrappers and future response checks).
+- **Fixtures** — `import { test, expect } from '../src/fixtures'` (or `from '@/fixtures'` if your runner resolves `tsconfig` paths). The composite `pages` fixture exposes `pages.home` (and future `*.page.ts` entries on `AppPages`)
 - **Base URL** — `playwright.config.ts` sets `use.baseURL` to `https://winwin.travel` by default; use `page.goto('/landings/en/')` in specs (overridable with `PLAYWRIGHT_BASE_URL` / `BASE_URL`)
 - **UI assertions** plus **network or API checks** where requirements call for URL/request validation
 - **Small, focused specs**; traceability to `wiki/requirements.md` via file names and comments where useful
@@ -44,7 +44,7 @@ Add subfolders under `tests/` only when it improves clarity (e.g. `tests/header/
 
 ## Configuration and environment
 
-- **Base URL:** Set in `playwright.config.ts` under `use.baseURL` when the suite should use relative navigation (`page.goto('/')`). Uncomment and set when the target environment is fixed. **Which host/path to use** (assigner URL vs working landing, 404 caveat) is documented in `wiki/requirements.md`.
+- **Base URL:** Set in `playwright.config.ts` under `use.baseURL` when the suite should use relative navigation (`page.goto('/')`). Uncomment and set when the target environment is fixed. **Which host/path to use** (assigner URL vs working EN home page route, 404 caveat) is documented in `wiki/requirements.md`.
 - **Secrets / env files:** Optional `.env` loading is stubbed in `playwright.config.ts` (commented `dotenv` imports). Document variable names in the section below when introduced.
 - **Local server:** `webServer` block is commented; enable if tests should start an app automatically.
 
@@ -65,7 +65,7 @@ Record meaningful choices so future changes stay consistent.
 
 | Date | Decision | Rationale |
 |------|----------|-----------|
-| 2026-04 | Live EN landing base URL and 404 on `/app/landings/en` are documented in `wiki/requirements.md`. | Avoids ad-hoc URLs in tests and matches production routing. |
+| 2026-04 | Live EN home page base URL and 404 on `/app/landings/en` are documented in `wiki/requirements.md`. | Avoids ad-hoc URLs in tests and matches production routing. |
 
 ## CI and release (fill in when applicable)
 

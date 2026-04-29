@@ -1,9 +1,27 @@
 import type { Request } from '@playwright/test';
 import { test, expect } from '../../src/fixtures';
 import { statisticsOffersCountBreakfastQuery } from '../../src/models/filters/statistics-filter-query-breakfast';
-import { parseAdultsQuantityFromSearchHref } from '../../src/utils/search-href-adults';
-import { withNoServerErrorsOnApiStyleTraffic } from '../../src/utils/network-assertions';
 import { logTestInfo } from '../../src/utils/test-log';
+import { withNoServerErrorsOnApiStyleTraffic } from '../../src/utils/network-assertions';
+
+/** Read adults count from the hero Search link (`href` may be relative `/app?…`). */
+function parseAdultsQuantityFromSearchHref(href: string | null, baseURL: string): number {
+  if (href === null || href === '') {
+    throw new Error('Search link href is missing');
+  }
+  const u = new URL(href, baseURL);
+  const raw = u.searchParams.get('search.guestQuantity.adultsQuantity');
+  if (raw === null) {
+    throw new Error(
+      `Search href did not contain search.guestQuantity.adultsQuantity; keys present: ${[...u.searchParams.keys()].join(', ')}`
+    );
+  }
+  const n = Number.parseInt(raw, 10);
+  if (!Number.isFinite(n)) {
+    throw new Error(`Invalid adultsQuantity: ${raw}`);
+  }
+  return n;
+}
 
 /** Statistics endpoint observed when filters panel applies selection (encoded query contains `filters`). */
 const STATISTICS_OFFERS_COUNT_PATH = '/api/v1/statistics/offers/count';
@@ -12,34 +30,35 @@ const STATISTICS_OFFERS_COUNT_PATH = '/api/v1/statistics/offers/count';
  * Task 2 — filters change outgoing URLs: hero Search `href` (navigation) and/or API-style GET params.
  * Technique: equivalence + decision-table-style paths (guests vs advanced filters); API interception via `waitForRequest`.
  */
-test.describe('Landing — filters affect request URL', () => {
+test.describe('Home — filters affect request URL', () => {
   test.use({ viewport: { width: 1920, height: 1080 } });
   test.slow();
 
-  test.beforeEach(async ({ page, landing }) => {
-    const response = await landing.gotoEnLanding();
+  test.beforeEach(async ({ page, pages }) => {
+    const response = await pages.home.gotoHomePage();
     expect(response, 'Navigation should return a response object').toBeTruthy();
     expect(
       response!.ok(),
-      'EN landing document request should return a successful HTTP status'
+      'EN home page document request should return a successful HTTP status'
     ).toBe(true);
     logTestInfo('Document navigation', { status: response!.status(), url: page.url() });
   });
 
-  test('guest adults increment updates Search link query string', async ({ page, landing }) => {
-    await landing.waitForHeroSearchStripReady();
+  test('guest adults increment updates Search link query string', async ({ page, pages }) => {
+    const home = pages.home;
+    await home.waitForHeroSearchStripReady();
 
-    const hrefBefore = await landing.mainSearchCta().getAttribute('href');
+    const hrefBefore = await home.mainSearchCta().getAttribute('href');
     const adultsBefore = parseAdultsQuantityFromSearchHref(hrefBefore, page.url());
     logTestInfo('Search href baseline', { adultsQuantity: adultsBefore });
 
     await withNoServerErrorsOnApiStyleTraffic(page, async () => {
-      await landing.openGuestsModal();
-      await landing.adultsIncrement().click();
-      await landing.dismissGuestsMenu();
+      await home.openGuestsModal();
+      await home.adultsIncrement().click();
+      await home.dismissGuestsMenu();
     });
 
-    const hrefAfter = await landing.mainSearchCta().getAttribute('href');
+    const hrefAfter = await home.mainSearchCta().getAttribute('href');
     const adultsAfter = parseAdultsQuantityFromSearchHref(hrefAfter, page.url());
     logTestInfo('Search href after adults step', { adultsQuantity: adultsAfter });
 
@@ -49,9 +68,10 @@ test.describe('Landing — filters affect request URL', () => {
 
   test('advanced filter Apply sends statistics request URL encoding Breakfast filter', async ({
     page,
-    landing,
+    pages,
   }) => {
-    await landing.waitForHeroSearchStripReady();
+    const home = pages.home;
+    await home.waitForHeroSearchStripReady();
 
     let lastOfferCountStatsUrl = '';
     const trackOfferCountStatsUrl = (req: Request): void => {
@@ -62,9 +82,9 @@ test.describe('Landing — filters affect request URL', () => {
     page.on('request', trackOfferCountStatsUrl);
 
     try {
-      await landing.openAdvancedFiltersButton().click();
+      await home.openAdvancedFiltersButton().click();
 
-      await expect(landing.advancedCheckbox('Breakfast')).toBeVisible();
+      await expect(home.advancedCheckbox('Breakfast')).toBeVisible();
       await page.waitForLoadState('networkidle').catch(() => undefined);
       const statsUrlBeforeBreakfastApply = lastOfferCountStatsUrl;
 
@@ -77,8 +97,8 @@ test.describe('Landing — filters affect request URL', () => {
       );
 
       await withNoServerErrorsOnApiStyleTraffic(page, async () => {
-        await landing.advancedCheckbox('Breakfast').click();
-        await landing.applyFiltersButton().click();
+        await home.advancedCheckbox('Breakfast').click();
+        await home.applyFiltersButton().click();
       });
 
       const statsRequest = await statsRequestPromise;
@@ -106,7 +126,7 @@ test.describe('Landing — filters affect request URL', () => {
         ).toBe(value);
       }
 
-      await landing.closeFiltersPanelButton().click().catch(() => undefined);
+      await home.closeFiltersPanelButton().click().catch(() => undefined);
     } finally {
       page.off('request', trackOfferCountStatsUrl);
     }
