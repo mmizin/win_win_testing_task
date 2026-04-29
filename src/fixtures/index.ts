@@ -6,4 +6,5 @@ export const test = base.extend<PagesFixtures>(pagesFixture);
 
 export const expect = test.expect;
 
+export { pagesFixture };
 export type { AppPages, PagesFixtures } from './pages.fixture';
